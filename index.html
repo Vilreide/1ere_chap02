@@ -10,16 +10,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Computer+Modern+Serif&amp;display=swap" rel="stylesheet"><!-- Police computer modern (latex) -->
 <!-- STYLE MANIM -->
 <style>
-    body, .reveal {
-      font-family: 'Computer Modern Serif', serif;
-      background-color: black;
-      color: white;
+  @media print {
+    /* Force un fond noir et du texte blanc pour l'impression */
+    body {
+        background-color: #000 !important;  /* Fond noir */
+        color: #fff !important;              /* Texte blanc */
     }
-    .smallcaps {
-      font-variant: small-caps;
+    /* Forcer l'impression des arrière-plans pour les divs, sections, etc. */
+    * {
+        background-color: #000 !important;
+        color: #fff !important;
     }
-    .reveal h2 {font-family: 'Computer Modern Serif', serif; color: rgb(255, 37, 37); font-weight: bold; text-transform: none; font-size: 1.6em; margin-bottom: 0.6em;}
-    .reveal h3 {font-family: 'Computer Modern Serif', serif; color: rgb(22, 161, 22); font-weight: bold; text-transform: none; text-align: left; font-size: 1.3em; margin-bottom: 0.5em; } 
+  }
+
+  body, .reveal {
+    font-family: 'Computer Modern Serif', serif;
+    background-color: black;
+    color: white;
+  }
+  .smallcaps {
+    font-variant: small-caps;
+  }
+  .reveal h2 {font-family: 'Computer Modern Serif', serif; color: rgb(255, 37, 37); font-weight: bold; text-transform: none; font-size: 1.6em; margin-bottom: 0.6em;}
+  .reveal h3 {font-family: 'Computer Modern Serif', serif; color: rgb(22, 161, 22); font-weight: bold; text-transform: none; text-align: left; font-size: 1.3em; margin-bottom: 0.5em; } 
 </style>
 
 <!-- DIVISONS -->
