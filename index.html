@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Chapitre 2 : Trigonométrie</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css" rel="stylesheet"/> <!-- Reveal -->
+<link href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/moon.css" rel="stylesheet"/> <!-- Reveal -->
+<link href="https://fonts.googleapis.com/css2?family=Computer+Modern+Serif&amp;display=swap" rel="stylesheet"><!-- Police computer modern (latex) -->
+<!-- STYLE MANIM -->
+<style>
+    body, .reveal {
+      font-family: 'Computer Modern Serif', serif;
+      background-color: black;
+      color: white;
+    }
+    .smallcaps {
+      font-variant: small-caps;
+    }
+    .reveal h2 {font-family: 'Computer Modern Serif', serif; color: rgb(255, 37, 37); font-weight: bold; text-transform: none; font-size: 1.6em; margin-bottom: 0.6em;}
+    .reveal h3 {font-family: 'Computer Modern Serif', serif; color: rgb(22, 161, 22); font-weight: bold; text-transform: none; text-align: left; font-size: 1.3em; margin-bottom: 0.5em; } 
+</style>
+
+<!-- DIVISONS -->
+<style>
+  .def, .defs, .defprop, .prop, .theo, .ex, .exs, .rem, .rems, .mnemo, .rapp, .rapps {
+    padding: 0.35em;
+    border-radius: 6px;
+    margin: 0.3em auto;
+    position: relative;
+    text-align: left;
+    max-width: 95%;
+    min-height: 4em;
+  }
+
+  /* Couleurs et bordures */
+  .def, .defs, .defprop, .prop, .theo {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+  }
+  .ex, .exs {
+    border: 2px solid blue;
+    background-color: rgba(0, 21, 255, 0.16);
+  }
+  .rem, .rems {
+    border: 2px solid orange;
+    background-color: rgba(255, 165, 0, 0.1);
+  }
+  .mnemo {
+    border: 2px solid #711082;
+    background-color: rgba(210, 14, 204, 0.2);
+  }
+  .rapp, .rapps {
+    border: 2px solid forestgreen;
+    background-color: rgba(34, 139, 34, 0.12);
+  }
+
+  /* Titres automatiques */
+  .def::before, .defs::before, .defprop::before, .prop::before, 
+  .theo::before, .ex::before, .exs::before, .rapp::before, .rapps::before,
+  .rem::before, .rems::before, .mnemo::before {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+  }
+
+  .def::before { content: "Définition :"; color: red; }
+  .defs::before { content: "Définitions :"; color: red; }
+  .defprop::before { content: "Définition / Propriété :"; color: red; }
+  .prop::before { content: "Propriété :"; color: red; }
+  .theo::before { content: "Théorème :"; color: red; }
+  .ex::before { content: "Exemple :"; color: rgb(77, 77, 236); }
+  .exs::before { content: "Exemples :"; color: rgb(77, 77, 236); }
+  .rem::before { content: "Remarque :"; color: orange; }
+  .rems::before { content: "Remarques :"; color: orange; }
+  .mnemo::before { content: "Mnémotechnie :"; color: #711082; }
+  .rapp::before { content: "Rappel :"; color: rgb(60, 211, 60); }
+  .rapps::before { content: "Rappels :"; color: rgb(60, 211, 60); }
+</style>
+
+
+<!-- CONFIGURATION MATHJAX -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']],
+      processEscapes: true, packages: ['base', 'ams']
+    },
+    loader: {load: ['[tex]/ams']}, svg: {fontCache: 'global'}
+  };
+</script>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<!-- ----- Début de la présentation ------->
+
+<section>
+  <p class="fragment" data-fragment-index="0" style="font-size: 1.5em; color: #FFFFFF; margin-bottom: -0.11em;">
+    Chapitre 2 : Trigonométrie
+  </p>
+  <video class="fragment video-loop" data-fragment-index="0">
+    <source src="media/cercle_organique.mp4" type="video/mp4">
+  </video>
+  <p class="fragment" data-fragment-index="0" style="margin-top: -1.9em; font-size: 0.6em;">
+    Lycée Marcelin <span class="smallcaps">Berthelot</span> –
+    Aymé <span class="smallcaps">Petit</span>
+  </p>
+</section>
+
+<!-- -->
+<!-- Introduction -->
+<!-- -->
+
+<section data-auto-animate>
+  <h2>Point étymologique</h2>
+</section>
+<section data-auto-animate>
+  <h2>Point étymologique</h2>
+  <p><strong>Trigonométrie</strong> vient du grec <em>trìgônos</em> (triangulaire) et <em>métron</em> (mesure).</p>
+</section>
+<section>
+  <video class="fragment video-fragment">
+      <source src="media/triangles.mp4" type="video/mp4">
+  </video>
+</section>
+<section>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <img src="media/im00_4.JPG" style="width: 45%;" />
+    <div style="width: 50%;">
+      <p><strong style="color: yellow;">Ératosthène</strong> (de Cyrène), né en -276 avant J.C., utilise la
+        <strong style="border-bottom: 3px solid yellow;">trigonométrie</strong> pour déterminer la circonférence
+        de la Terre avec <span style="border-bottom: 3px solid yellow;">3% d'erreur</span> !</p>
+    </div>
+  </div>
+</section>
+<section data-auto-animate>
+  <p>En France, à la fin de la révolution, il n'y a pas d'unité de mesure universelle !</p>
+</section>
+<section data-auto-animate>
+  <p>En France, à la fin de la révolution, il n'y a pas d'unité de mesure universelle !</p>
+  <img src="media/im00_5.JPG" style="width: 80%; display: block; margin: auto;" />
+</section>
+<section>
+  <img src="media/im00_6.jpg" style="width: 60%; display: block; margin: auto;" />
+</section>
+<section>
+  <img src="media/im00_7.PNG" style="width: 80%; display: block; margin: auto;" />
+</section>
+<section>
+  <div style="width: 60%; margin: auto;">
+    <p class="fragment" style="text-align: center; margin-bottom: 0.4em;"><strong>Delambre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Méchain</strong></p>
+    <img src="media/im00_9.JPG" style="transform: scale(1.2);">
+  </div>
+</section>
+<section>
+  <img src="media/im00_10.jpg" style="width: 60%; display: block; margin: auto;" />
+</section>
+<section>
+  <div style="width: 80%; margin: auto;">
+    <img src="media/im00_8.png" style="width: 100%;" />
+    <p class="fragment" style="text-align: center; margin-top: 0.4em;">
+      <strong>Condorcet</strong> : <em>« Une mesure pour tous les Hommes et tous les temps. »</em>
+    </p>
+  </div>
+</section>
+<section>
+  <img src="media/im00_11.jpeg" style="width: 80%; display: block; margin: auto;" />
+</section>
+
+<!-- -->
+<!-- I/ Cercle trigonométrique & radian -->
+<!-- -->
+
+<section data-auto-animate>
+  <h2>I/ Cercle trigonométrique & radian</h2>
+  <h3 class="fragment">1) Le cercle et la droite des réels</h3>
+</section>
+
+<section data-auto-animate>
+  <h3>1) Le cercle et la droite des réels</h3>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div class="def" style="width: 70%; font-size: 0.82em;">
+      <p class="fragment" data-fragment-index="0">
+        Le <strong style="color: yellow;">cercle trigonométrique</strong>
+        est le cercle <span style="color: yellow;">$\mathcal{C}$</span> du repère orthonormé centré  en $(0;0)$ et de rayon 1.
+      </p>
+      <p class="fragment" data-fragment-index="1">
+        Il est <strong style="border-bottom: 2px solid yellow;">orienté</strong>
+        dans le sens anti-horaire, appelé
+        <strong style="color: yellow;">sens trigonométrique</strong> (ou sens direct).
+      </p>
+    </div>
+    <div style="width: 30%;">
+        <img class="fragment" data-fragment-index="0" src="media/im01.jpg" style="margin: auto;"> 
+    </div>
+  </div>
+  
+  
+</section>
+
+<section>
+  <video class="fragment video-fragment">
+    <source src="media/cercle1.mp4" type="video/mp4">
+  </video>
+</section>
+
+<section>
+  <video class="fragment video-fragment">
+    <source src="media/Enroulement_trigo2.mp4" type="video/mp4">
+  </video>
+</section>
+
+<section>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div class="def" style="width: 67%; font-size: 0.95em;">
+      À tout réel $x$ correspond un unique point 
+      <span style="color: yellow;">$M$</span> sur le cercle $\mathcal{C}$, 
+      appelé <strong style="color: yellow;">point image</strong> de $x$ 
+      <span style="border-bottom: 2px solid yellow;">par enroulement</span> de la droite des réels sur le cercle.
+    </div>
+    <div style="width: 30%;">
+        <img src="media/point_image.jpg"> 
+    </div>
+  </div>
+
+  <div class="fragment prop">
+    Deux réels \( x \) et \( x' \) ont le même point image sur \( \mathcal{C} \) si et seulement s’il existe
+    <span style="border-bottom: 2px solid yellow;">\( k \in \mathbb{Z} \)</span> tel que
+    <span style="border: 2px solid yellow; padding: 5px;">\( x = x' + 2k\pi \)</span>.
+  </div>
+</section>
+
+<section>
+  <video class="fragment video-fragment">
+    <source src="media/radian.mp4" type="video/mp4">
+  </video>
+</section>
+
+<section>
+  <div style="display: flex; justify-content: space-between;">
+    <div class="def" style="width: 65%;">
+      <p class="fragment" data-fragment-index="3">
+        Le <strong style="color: yellow;">radian</strong> (rad) est
+        <span style="border-bottom: 2px solid yellow;">la mesure d’un angle</span>
+        qui intercepte \( \mathcal{C} \) sur un arc de longueur 1.
+        <span class="fragment" data-fragment-index="4">
+          On a \( 1\,\text{rad} \approx 57{,}3^\circ \).
+        </span>
+      </p>
+    </div>
+    <div style="width: 35%;">
+      <img src="media/radian.png">
+    </div>
+  </div>
+
+  <div class="fragment" data-fragment-index="5" style="font-size: 0.9em;">
+    <p style="font-size: 0.9em;"><strong>Compléter le tableau suivant :</strong></p>
+    <table style="width: 100%; text-align: center; border-collapse: collapse;" border="3">
+      <tr style="background-color: rgba(0,0,255,0.1); color: white; background-color: rgba(255, 0, 0, 0.323);">
+        <th>Angle en degré</th>
+        <td>0</td><td>30</td><td>45</td><td>60</td><td>90</td><td>180</td><td>360</td>
+      </tr>
+      <tr>
+        <th style="background-color: rgba(255, 0, 0, 0.323); color: white;">Angle en radian</th>
+        <td style="background-color: rgba(255, 237, 237, 0.945);"></td>
+        <td style="background-color: rgba(255, 237, 237, 0.945);"></td>
+        <td style="background-color: rgba(255, 237, 237, 0.945);"></td>
+        <td style="background-color: rgba(255, 237, 237, 0.945);"></td>
+        <td style="background-color: rgba(255, 237, 237, 0.945);"></td>
+        <td style="background-color: rgba(255, 237, 237, 0.945);"></td>
+        <td style="background-color: rgba(255, 237, 237, 0.945);"></td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="fragment" data-fragment-index="6" style="font-size: 0.93em;"><em>Dans la suite du cours, tous les angles seront donnés en radian.</em></p>
+</section>
+
+<!-- -->
+<!-- II/ Cosinus et sinus d’un réel -->
+<!-- -->
+
+<section data-auto-animate>
+  <h2>II/ Cosinus et sinus d’un réel</h2>
+
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="width: 50%; font-size: 0.82em;">
+
+    </div>
+
+    <div data-id="looping" style="width: 50%;">
+      <video class="fragment video-loop" data-fragment-index="1">
+        <source src="media/cercle_cos_sin.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<section data-auto-animate>
+  <h2>II/ Cosinus et sinus d’un réel</h2>
+
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="width: 70%; font-size: 0.82em;" class="defs" data-fragment-index="2">
+      Soit \( x \in \mathbb{R} \) ayant \( M \) pour p$^t$ image sur \( \mathcal{C} \).
+      <p class="fragment" data-fragment-index="3" style="margin-top: 0.2em; margin-bottom: -0.5em;">
+        • L’abscisse de \( M \) est le <strong style="color: yellow;">cosinus</strong> de \( x \), noté
+        <span style="color: yellow;">$\cos(x)$</span>.
+      </p>
+      <p class="fragment" data-fragment-index="4" style="margin-bottom: -0.3em;">
+        • L’ordonnée de \( M \) est le <strong style="color: yellow;">sinus</strong> de \( x \), noté 
+        <span style="color: yellow;">$\sin(x)$</span>.
+      </p>
+      <p class="fragment" data-fragment-index="5" style="margin-bottom: -0.1em;">Autrement dit :
+        $M\big($ <span style="color: yellow;">$\cos x$</span>
+        $;$ <span style="color: yellow;">$\sin x$</span>$\big)$.
+      </p>
+    </div>
+
+    <div data-id="looping" style="width: 27.5%;">
+      <video class="fragment video-loop" data-fragment-index="1">
+        <source src="media/cercle_cos_sin.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="prop">
+    Pour tout \( x \in \mathbb{R} \), on a les propriétés suivantes :
+    <p style="font-size: 0.886em;">
+      <span style="color: rgb(205, 205, 255);">$-1 \leqslant \cos(x) \leqslant 1$</span>&nbsp;&nbsp;&nbsp;
+      <span style="color: yellow;">$-1 \leqslant \sin(x) \leqslant 1$</span>&nbsp;&nbsp;&nbsp;
+      <span style="color: rgb(255, 130, 130);">$\cos^2(x) + \sin^2(x) = 1$</span>
+    </p>
+  </div>
+
+  <div class="fragment" style="margin-top: -0.2em;">
+    <p style="text-align: center; font-size: 0.8em;"><strong>Valeurs remarquables à connaître</strong></p>
+    <div style="display: flex;">
+      <div style="width: 65%;">
+        <table style="width: 100%; text-align: center; border-collapse: collapse;" border="1">
+          <tr style="background-color: rgba(255,0,0,0.1); height: 2.28em;">
+            <th style="background-color: #b91c1c; color: white;">Angle</th>
+            <td>\( 0 \)</td>
+            <td>\( \frac{\pi}{6} \)</td>
+            <td>\( \frac{\pi}{4} \)</td>
+            <td>\( \frac{\pi}{3} \)</td>
+            <td>\( \frac{\pi}{2} \)</td>
+          </tr>
+          <tr style="height: 2.28em;">
+            <th style="background-color: #b91c1c; color: white;">\( \cos(x) \)</th>
+            <td>1</td><td>\( \frac{\sqrt{3}}{2} \)</td><td>\( \frac{\sqrt{2}}{2} \)</td><td>\( \frac{1}{2} \)</td><td>0</td>
+          </tr>
+          <tr style="height: 2.28em;">
+            <th style="background-color: #b91c1c; color: white;">\( \sin(x) \)</th>
+            <td>0</td><td>\( \frac{1}{2} \)</td><td>\( \frac{\sqrt{2}}{2} \)</td><td>\( \frac{\sqrt{3}}{2} \)</td><td>1</td>
+          </tr>
+        </table>
+      </div>
+      <div style="width: 33%; text-align: right; margin-top: -0.5em;">
+        <img src="media/im06.jpg" style="width: 90%; border: 2px solid #b91c1c;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -->
+<!-- III/ Fonctions trigonométriques -->
+<!-- -->
+
+<section data-auto-animate>
+  <h2>III/ Fonctions trigonométriques</h2>
+</section>
+<section data-auto-animate>
+  <h2 style="font-size: 0.65em;">III/ Fonctions trigonométriques</h2>
+  <video class="fragment video-fragment">
+    <source src="media/fonctions_trigo.mp4" type="video/mp4">
+  </video>
+</section>
+
+<section>
+  <div class="def" style="font-size: 0.81em;">
+    La fonction
+    $
+      \left\{
+        \begin{array}{l}
+          \textbf{cosinus} \\
+          \textbf{sinus}
+        \end{array}
+      \right.
+      \text{ est la fonction}
+      \left\{
+        \begin{array}{l}
+          x \longmapsto \cos(x) \\
+          x \longmapsto \sin(x)
+        \end{array}
+      \right.
+    $
+    définie sur \( \mathbb{R} \).
+  </div>
+
+  <div class="fragment" data-fragment-index="0" style="text-align: center; margin-top: 1em;">
+    <p style="font-size: 0.79em;">Les représentations graphiques des fonctions <strong>cos</strong> et <strong>sin</strong> sont des <strong style="color: yellow;">sinusoïdes</strong>.</p>
+    <video class="fragment video-fragment" data-fragment-index="0">
+      <source src="media/courbes_sin_cos.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+
+<section data-auto-animate>
+  <video class="fragment video-fragment" data-fragment-index="0">
+    <source src="media/courbes_sin_cos.mp4" type="video/mp4">
+  </video>
+  <div data-id="period" class="fragment def" style="margin-top: 1em;">
+    Une fonction \( f \) définie sur \( \mathbb{R} \) est dite <strong style="color: yellow;">\( T \)-périodique</strong> avec $T\gt 0$, lorsque pour tout \( x \in \mathbb{R} \), on a :<br />
+    \[f(x+T) = f(x)\] 
+  </div>
+</section>
+
+<section data-auto-animate>
+  <div data-id="period" class="def" style="margin-top: 1em;">
+    Une fonction \( f \) définie sur \( \mathbb{R} \) est dite <strong style="color: yellow;">\( T \)-périodique</strong> avec $T\gt 0$, lorsque pour tout \( x \in \mathbb{R} \), on a :<br />
+    \[f(x+T) = f(x)\] 
+  </div>
+  <div class="prop" style="font-size: 0.95em;">
+    Les fonctions <span style="border-bottom: 2px solid yellow;">cos</span> et <span style="border-bottom: 2px solid yellow;">sin</span>
+    sont <span style="color: yellow;">$2\pi$-périodiques</span> : pour tt $x\in\mathbb{R}$
+    <p style="margin-top: 0.15em;">\( \cos(x+2\pi) = \cos(x) \quad \) et \( \quad \sin(x+2\pi) = \sin(x) \).</p>
+  </div>
+</section>
+
+<section>
+  <div class="rapps" style="font-size: 0.9em;">
+    Si $f$ est définie sur $\mathbb{R}$, alors :
+    <p class="fragment" style="margin-top: 0.2em;">
+      • $f$ est <strong style="color: yellow;">paire</strong> lorsque pour tt $x\in\mathbb{R}$, <span style="color: yellow;">$f(-x)=f(x)$</span>;
+    </p>
+    <p class="fragment" style="margin-top: -0.5em; margin-bottom: -0.1em;">
+      • $f$ est <strong style="color: rgb(118, 146, 246);">impaire</strong> lorsque pour tt $x\in\mathbb{R}$, <span style="color: rgb(118, 146, 246);">$f(-x)=-f(x)$</span>.
+    </p>
+  </div>
+  <div class="fragment prop" style="margin-top: 0.6em;">
+      <p class="fragment">• La fonction <span style="border-bottom: 2px solid yellow;">cos</span> est <strong style="color: yellow;">paire</strong> : \( \cos(-x) = \cos(x) \).</p>
+      <p class="fragment" style="margin-top: -0.3em;">• La fonction <span style="border-bottom: 2px solid rgb(118, 146, 246);">sin</span> est <strong style="color: rgb(118, 146, 246);">impaire</strong> : \( \sin(-x) = -\sin(x) \).</p>
+  </div>
+
+  <div class="fragment" style="text-align: center; margin-top: 0em;">
+    <p style="font-size: 1.5em;">❧ Fin de chapitre ❧</p>
+  </div>
+</section>
+
+
+<!-- ----- Fin de la présentation ----- -->
+</div>
+</div>
+
+<!-- -->
+<!-- Scripts du body -->
+<!-- -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+
+<!-- video-fragment -->
+<script>
+  const doubleDelay = 350;
+  const videoStates = new Map(); // état indépendant pour chaque vidéo
+
+  // Réinitialiser les vidéos de la slide active
+  Reveal.on('slidechanged', event => {
+    event.currentSlide.querySelectorAll('.video-fragment').forEach(v => {
+      videoStates.set(v, { started: false, lastPressTime: 0, pressTimer: null });
+      v.pause();
+      v.currentTime = 0;
+    });
+  });
+
+  document.addEventListener("keydown", e => {
+    if (!["ArrowRight","ArrowDown","PageDown"," "].includes(e.key)) return;
+
+    const currentSlide = Reveal.getCurrentSlide();
+    // On cherche la vidéo fragment actuellement visible
+    const v = currentSlide.querySelector('.video-fragment.visible');
+    if (!v) return;
+
+    // Récupérer ou initialiser l'état
+    let state = videoStates.get(v);
+    if (!state) {
+      state = { started: false, lastPressTime: 0, pressTimer: null };
+      videoStates.set(v, state);
+    }
+
+    if (v.ended) return; // si terminée → laisser Reveal gérer
+
+    const now = Date.now();
+
+    if (!state.started) {
+      // Premier suivant → lancer la vidéo
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      v.play().catch(err => console.warn("Lecture bloquée :", err));
+      state.started = true;
+      state.lastPressTime = now;
+      videoStates.set(v, state);
+      return;
+    }
+
+    // Vidéo en cours
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    if (now - state.lastPressTime < doubleDelay) {
+      // Double suivant → sauter à la fin + fragment suivant
+      clearTimeout(state.pressTimer);
+      v.currentTime = v.duration;
+      state.lastPressTime = 0;
+      Reveal.nextFragment();
+    } else {
+      // Simple suivant → toggle pause/lecture
+      state.lastPressTime = now;
+      state.pressTimer = setTimeout(() => {
+        if (v.paused) {
+          v.play().catch(err => console.warn("Lecture bloquée :", err));
+        } else {
+          v.pause();
+        }
+        state.lastPressTime = 0;
+        videoStates.set(v, state);
+      }, doubleDelay);
+    }
+
+    videoStates.set(v, state);
+  }, true);
+
+  // Quand une vidéo se termine → débloquer le fragment suivant
+  document.querySelectorAll('.video-fragment').forEach(v => {
+    v.onended = () => {
+      Reveal.nextFragment();
+    };
+  });
+</script>
+
+<!-- video-loop -->
+<script>
+class VideoLoop {
+  constructor(selector = '.video-loop') {
+    this.selector = selector;
+    this.videos = document.querySelectorAll(selector);
+    this.init();
+  }
+
+  init() {
+    const playAllInSlide = (slide) => {
+      slide.querySelectorAll(this.selector).forEach(video => {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch(err => console.warn("Lecture bloquée :", err));
+        }
+      });
+    };
+
+    // Quand Reveal est prêt
+    Reveal.on('ready', event => playAllInSlide(event.currentSlide));
+
+    // Quand on change de slide
+    Reveal.on('slidechanged', event => {
+      // Stopper toutes les vidéos de l’ancienne slide
+      document.querySelectorAll(this.selector).forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+      });
+      // Lancer toutes les vidéos de la nouvelle slide
+      playAllInSlide(event.currentSlide);
+    });
+
+    // Config autoplay-friendly
+    this.videos.forEach(video => {
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "auto";
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  new VideoLoop('.video-loop');
+});
+</script>
+
+    
+
+
+<!-- Config Reveal -->
+<script>
+    Reveal.initialize({ transition: 'fade', hash: true });
+    const retypeset = (elements = null) => {
+      if (window.MathJax) {
+        MathJax.typesetClear();
+        MathJax.typesetPromise(elements || undefined)
+          .catch(err => console.error("MathJax error:", err.message));
+      }
+    };
+    Reveal.on('ready', () => retypeset());
+    Reveal.on('slidechanged', () => {
+      if (window.MathJax && MathJax.typesetClear && MathJax.typesetPromise) {
+        MathJax.typesetClear(); MathJax.typesetPromise();
+      }
+    });
+    Reveal.on('fragmentshown', event => {
+      const elements = [event.fragment, ...event.fragment.querySelectorAll('*')]; retypeset(elements);
+    });
+</script>
+</body>
+</html>
