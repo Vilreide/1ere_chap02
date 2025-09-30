@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>Chapitre 2 : Trigonométrie</title>
+<title>Chapitre 2 : Notion de vecteur</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css" rel="stylesheet"/> <!-- Reveal -->
 <link href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/moon.css" rel="stylesheet"/> <!-- Reveal -->
@@ -16,81 +16,61 @@
         background-color: #000 !important;  /* Fond noir */
         color: #fff !important;              /* Texte blanc */
     }
+    h2, h3 {
+        color: #ff0000 !important;  /* Couleur des titres */
+        display: block !important;  /* S'assurer que les titres sont affichés */
+        visibility: visible !important;  /* Assurer que les titres sont visibles */
+    }
     /* Forcer l'impression des arrière-plans pour les divs, sections, etc. */
     * {
         background-color: #000 !important;
         color: #fff !important;
     }
   }
-
   body, .reveal {
     font-family: 'Computer Modern Serif', serif;
     background-color: black;
     color: white;
   }
-  .smallcaps {
-    font-variant: small-caps;
-  }
-  .reveal h2 {font-family: 'Computer Modern Serif', serif; color: rgb(255, 37, 37); font-weight: bold; text-transform: none; font-size: 1.6em; margin-bottom: 0.6em;}
-  .reveal h3 {font-family: 'Computer Modern Serif', serif; color: rgb(22, 161, 22); font-weight: bold; text-transform: none; text-align: left; font-size: 1.3em; margin-bottom: 0.5em; } 
+  .reveal h2 {font-family: 'Computer Modern Serif', serif; color: rgb(255, 37, 37); -webkit-text-stroke: 3px rgb(255, 219, 219); paint-order: stroke fill; font-weight: bold; text-transform: none; font-size: 1.6em; margin-bottom: 0.6em;}
+  .reveal h3 {font-family: 'Computer Modern Serif', serif; color: rgb(22, 161, 22); -webkit-text-stroke: 2.1px rgb(214, 255, 214); paint-order: stroke fill; font-weight: bold; text-transform: none; text-align: left; font-size: 1.3em; margin-bottom: 0.5em; } 
 </style>
 
 <!-- DIVISONS -->
 <style>
-  .def, .defs, .defprop, .prop, .theo, .ex, .exs, .rem, .rems, .mnemo, .rapp, .rapps {
-    padding: 0.35em;
-    border-radius: 6px;
-    margin: 0.3em auto;
-    position: relative;
-    text-align: left;
-    max-width: 95%;
-    min-height: 4em;
+  .def, .defs, .defprop, .prop, .theoreme, .ex, .exs, .rem, .rems, .mnemo, .voc, .rapps {
+  padding: 0.35em; border-radius: 6px; margin: 0.3em auto; position: relative; text-align: left; color: #000; max-width: 95%; min-height: 4em;
   }
+  .def {border: 5px solid red; background-color: rgb(255, 193, 193);}
+  .defs {border: 5px solid red; background-color: rgb(255, 193, 193);}
+  .defprop {border: 5px solid red; background-color: rgb(255, 193, 193);}
+  .prop {border: 5px solid red; background-color: rgb(255, 193, 193);}
+  .theo {border: 5px solid red; background-color: rgb(255, 193, 193);}
+  .ex {border: 5px solid blue; background-color: rgb(215, 219, 255);}
+  .exs {border: 2px solid blue; background-color: rgb(215, 219, 255);}
+  .rem {border: 5px solid orange; background-color: rgb(255, 232, 188);}
+  .rems {border: 5px solid orange; background-color: rgb(255, 232, 188);}
+  .mnemo {border: 2px solid #711082;; background-color: rgba(210, 14, 204, 0.195);}
+  .voc {border: 5px solid rgb(51, 168, 51); background-color: rgb(166, 218, 166);}
+  .rapps {border: 5px solid rgb(51, 168, 51); background-color: rgb(166, 218, 166);}
 
-  /* Couleurs et bordures */
-  .def, .defs, .defprop, .prop, .theo {
-    border: 2px solid red;
-    background-color: rgba(255, 0, 0, 0.1);
-  }
-  .ex, .exs {
-    border: 2px solid blue;
-    background-color: rgba(0, 21, 255, 0.16);
-  }
-  .rem, .rems {
-    border: 2px solid orange;
-    background-color: rgba(255, 165, 0, 0.1);
-  }
-  .mnemo {
-    border: 2px solid #711082;
-    background-color: rgba(210, 14, 204, 0.2);
-  }
-  .rapp, .rapps {
-    border: 2px solid forestgreen;
-    background-color: rgba(34, 139, 34, 0.12);
-  }
-
-  /* Titres automatiques */
-  .def::before, .defs::before, .defprop::before, .prop::before, 
-  .theo::before, .ex::before, .exs::before, .rapp::before, .rapps::before,
-  .rem::before, .rems::before, .mnemo::before {
-    display: block;
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 0.5em;
+  
+  .def::before, .defs::before, .defprop::before, .prop::before, .theoreme::before, .ex::before, .exs::before, .rem::before, .rems::before, .mnemo::before, .voc::before, .rapps::before {
+    display: block; text-align: left; font-weight: bold; margin-bottom: 0.5em;
   }
 
   .def::before { content: "Définition :"; color: red; }
   .defs::before { content: "Définitions :"; color: red; }
   .defprop::before { content: "Définition / Propriété :"; color: red; }
-  .prop::before { content: "Propriété :"; color: red; }
-  .theo::before { content: "Théorème :"; color: red; }
-  .ex::before { content: "Exemple :"; color: rgb(77, 77, 236); }
-  .exs::before { content: "Exemples :"; color: rgb(77, 77, 236); }
-  .rem::before { content: "Remarque :"; color: orange; }
-  .rems::before { content: "Remarques :"; color: orange; }
-  .mnemo::before { content: "Mnémotechnie :"; color: #711082; }
-  .rapp::before { content: "Rappel :"; color: rgb(60, 211, 60); }
-  .rapps::before { content: "Rappels :"; color: rgb(60, 211, 60); }
+  .prop::before  { content: "Propriété :";  color: red; }
+  .theoreme::before  { content: "Théorème :";  color: red; }
+  .ex::before   { content: "Exemple :";   color: rgb(77, 77, 236); }
+  .exes::before   { content: "Exemples :";   color: rgb(77, 77, 236); }
+  .rem::before  { content: "Remarque :";  color: rgb(220, 144, 2); }
+  .rems::before  { content: "Remarques :";  color: rgb(220, 144, 2); }
+  .mnemo::before  { content: "Mnémotechnie :"; color: #711082; }
+  .voc::before {content: "Vocabulaire :"; color: rgb(30, 148, 30);}
+  .rapps::before {content: "Rappels :"; color: rgb(30, 148, 30);}
 </style>
 
 
@@ -118,8 +98,8 @@
     <source src="media/cercle_organique.mp4" type="video/mp4">
   </video>
   <p class="fragment" data-fragment-index="0" style="margin-top: -1.9em; font-size: 0.6em;">
-    Lycée Marcelin <span class="smallcaps">Berthelot</span> –
-    Aymé <span class="smallcaps">Petit</span>
+    Lycée Marcelin <span style="font-variant: small-caps;">Berthelot</span> - 
+    Aymé <span style="font-variant: small-caps;">Petit</span>
   </p>
 </section>
 
@@ -143,9 +123,9 @@
   <div style="display: flex; align-items: center; justify-content: space-between;">
     <img src="media/im00_4.JPG" style="width: 45%;" />
     <div style="width: 50%;">
-      <p><strong style="color: yellow;">Ératosthène</strong> (de Cyrène), né en -276 avant J.C., utilise la
-        <strong style="border-bottom: 3px solid yellow;">trigonométrie</strong> pour déterminer la circonférence
-        de la Terre avec <span style="border-bottom: 3px solid yellow;">3% d'erreur</span> !</p>
+      <p><strong style="color: red;">Ératosthène</strong> (de Cyrène), né en -276 avant J.C., utilise la
+        <strong style="border-bottom: 3px solid red;">trigonométrie</strong> pour déterminer la circonférence
+        de la Terre avec <span style="border-bottom: 3px solid red;">3% d'erreur</span> !</p>
     </div>
   </div>
 </section>
@@ -197,13 +177,13 @@
   <div style="display: flex; align-items: center; justify-content: space-between;">
     <div class="def" style="width: 70%; font-size: 0.82em;">
       <p class="fragment" data-fragment-index="0">
-        Le <strong style="color: yellow;">cercle trigonométrique</strong>
-        est le cercle <span style="color: yellow;">$\mathcal{C}$</span> du repère orthonormé centré  en $(0;0)$ et de rayon 1.
+        Le <strong style="color: red;">cercle trigonométrique</strong>
+        est le cercle <span style="color: red;">$\mathcal{C}$</span> du repère orthonormé centré  en $(0;0)$ et de rayon 1.
       </p>
       <p class="fragment" data-fragment-index="1">
-        Il est <strong style="border-bottom: 2px solid yellow;">orienté</strong>
+        Il est <strong style="border-bottom: 2px solid red;">orienté</strong>
         dans le sens anti-horaire, appelé
-        <strong style="color: yellow;">sens trigonométrique</strong> (ou sens direct).
+        <strong style="color: red;">sens trigonométrique</strong> (ou sens direct).
       </p>
     </div>
     <div style="width: 30%;">
@@ -230,9 +210,9 @@
   <div style="display: flex; align-items: center; justify-content: space-between;">
     <div class="def" style="width: 67%; font-size: 0.95em;">
       À tout réel $x$ correspond un unique point 
-      <span style="color: yellow;">$M$</span> sur le cercle $\mathcal{C}$, 
-      appelé <strong style="color: yellow;">point image</strong> de $x$ 
-      <span style="border-bottom: 2px solid yellow;">par enroulement</span> de la droite des réels sur le cercle.
+      <span style="color: red;">$M$</span> sur le cercle $\mathcal{C}$, 
+      appelé <strong style="color: red;">point image</strong> de $x$ 
+      <span style="border-bottom: 3px solid red;">par enroulement</span> de la droite des réels sur le cercle.
     </div>
     <div style="width: 30%;">
         <img src="media/point_image.jpg"> 
@@ -241,12 +221,13 @@
 
   <div class="fragment prop">
     Deux réels \( x \) et \( x' \) ont le même point image sur \( \mathcal{C} \) si et seulement s’il existe
-    <span style="border-bottom: 2px solid yellow;">\( k \in \mathbb{Z} \)</span> tel que
-    <span style="border: 2px solid yellow; padding: 5px;">\( x = x' + 2k\pi \)</span>.
+    <span style="border-bottom: 3px solid red;">\( k \in \mathbb{Z} \)</span> tel que
+    <span style="border: 3px solid red; padding: 5px;">\( x = x' + 2k\pi \)</span>.
   </div>
 </section>
 
 <section>
+  <h3>2) Radian</h3>
   <video class="fragment video-fragment">
     <source src="media/radian.mp4" type="video/mp4">
   </video>
@@ -256,8 +237,8 @@
   <div style="display: flex; justify-content: space-between;">
     <div class="def" style="width: 65%;">
       <p class="fragment" data-fragment-index="3">
-        Le <strong style="color: yellow;">radian</strong> (rad) est
-        <span style="border-bottom: 2px solid yellow;">la mesure d’un angle</span>
+        Le <strong style="color: red;">radian</strong> (rad) est
+        <span style="border-bottom: 3px solid red;">la mesure d’un angle</span>
         qui intercepte \( \mathcal{C} \) sur un arc de longueur 1.
         <span class="fragment" data-fragment-index="4">
           On a \( 1\,\text{rad} \approx 57{,}3^\circ \).
@@ -315,19 +296,19 @@
   <h2>II/ Cosinus et sinus d’un réel</h2>
 
   <div style="display: flex; justify-content: space-between; align-items: center;">
-    <div style="width: 70%; font-size: 0.82em;" class="defs" data-fragment-index="2">
-      Soit \( x \in \mathbb{R} \) ayant \( M \) pour p$^t$ image sur \( \mathcal{C} \).
+    <div style="width: 70%; font-size: 0.8em;" class="defs" data-fragment-index="2">
+      Soit \( x \in \mathbb{R} \) ayant \( M \) pour point image sur \( \mathcal{C} \).
       <p class="fragment" data-fragment-index="3" style="margin-top: 0.2em; margin-bottom: -0.5em;">
-        • L’abscisse de \( M \) est le <strong style="color: yellow;">cosinus</strong> de \( x \), noté
-        <span style="color: yellow;">$\cos(x)$</span>.
+        • L’abscisse de \( M \) est le <strong style="color: red;">cosinus</strong> de \( x \), noté
+        <span style="font-size: 1.1em; color: red;">$\cos(x)$</span>.
       </p>
       <p class="fragment" data-fragment-index="4" style="margin-bottom: -0.3em;">
-        • L’ordonnée de \( M \) est le <strong style="color: yellow;">sinus</strong> de \( x \), noté 
-        <span style="color: yellow;">$\sin(x)$</span>.
+        • L’ordonnée de \( M \) est le <strong style="color: red;">sinus</strong> de \( x \), noté 
+        <span style="font-size: 1.1em; color: red;">$\sin(x)$</span>.
       </p>
       <p class="fragment" data-fragment-index="5" style="margin-bottom: -0.1em;">Autrement dit :
-        $M\big($ <span style="color: yellow;">$\cos x$</span>
-        $;$ <span style="color: yellow;">$\sin x$</span>$\big)$.
+        $M\big($ <span style="font-size: 1.15em;;">$\cos x$</span>
+        $;$ <span style="font-size: 1.15em;">$\sin x$</span>$\big)$.
       </p>
     </div>
 
@@ -343,12 +324,14 @@
   <div class="prop">
     Pour tout \( x \in \mathbb{R} \), on a les propriétés suivantes :
     <p style="font-size: 0.886em;">
-      <span style="color: rgb(205, 205, 255);">$-1 \leqslant \cos(x) \leqslant 1$</span>&nbsp;&nbsp;&nbsp;
-      <span style="color: yellow;">$-1 \leqslant \sin(x) \leqslant 1$</span>&nbsp;&nbsp;&nbsp;
-      <span style="color: rgb(255, 130, 130);">$\cos^2(x) + \sin^2(x) = 1$</span>
+      <p class="fragment" style="color: rgb(0, 0, 0); margin-bottom: 0.3em;">• $-1 \leqslant \cos(x) \leqslant 1$</p>
+      <p class="fragment" style="color: rgb(0, 0, 0); margin-bottom: 0.3em;">• $-1 \leqslant \sin(x) \leqslant 1$</p>
+      <p class="fragment" style="color: rgb(0, 0, 0);">• $\cos^2(x) + \sin^2(x) = 1$</p>
     </p>
   </div>
+</section>
 
+<section>
   <div class="fragment" style="margin-top: -0.2em;">
     <p style="text-align: center; font-size: 0.8em;"><strong>Valeurs remarquables à connaître</strong></p>
     <div style="display: flex;">
@@ -414,12 +397,12 @@
     définie sur \( \mathbb{R} \).
   </div>
 
-  <div class="fragment" data-fragment-index="0" style="text-align: center; margin-top: 1em;">
-    <p style="font-size: 0.79em;">Les représentations graphiques des fonctions <strong>cos</strong> et <strong>sin</strong> sont des <strong style="color: yellow;">sinusoïdes</strong>.</p>
+  <div class="fragment rem" data-fragment-index="0">
+    <p>Les représentations graphiques des fonctions <strong>cos</strong> et <strong>sin</strong> sont des <strong style="color: red;">sinusoïdes</strong>.</p>
+  </div>
     <video class="fragment video-fragment" data-fragment-index="0">
       <source src="media/courbes_sin_cos.mp4" type="video/mp4">
     </video>
-  </div>
 </section>
 
 
@@ -428,36 +411,36 @@
     <source src="media/courbes_sin_cos.mp4" type="video/mp4">
   </video>
   <div data-id="period" class="fragment def" style="margin-top: 1em;">
-    Une fonction \( f \) définie sur \( \mathbb{R} \) est dite <strong style="color: yellow;">\( T \)-périodique</strong> avec $T\gt 0$, lorsque pour tout \( x \in \mathbb{R} \), on a :<br />
+    Une fonction \( f \) définie sur \( \mathbb{R} \) est dite <strong style="color: red;">\( T \)-périodique</strong> avec $T\gt 0$, lorsque pour tout \( x \in \mathbb{R} \), on a :<br />
     \[f(x+T) = f(x)\] 
   </div>
 </section>
 
 <section data-auto-animate>
   <div data-id="period" class="def" style="margin-top: 1em;">
-    Une fonction \( f \) définie sur \( \mathbb{R} \) est dite <strong style="color: yellow;">\( T \)-périodique</strong> avec $T\gt 0$, lorsque pour tout \( x \in \mathbb{R} \), on a :<br />
+    Une fonction \( f \) définie sur \( \mathbb{R} \) est dite <strong style="color: red;">\( T \)-périodique</strong> avec $T\gt 0$, lorsque pour tout \( x \in \mathbb{R} \), on a :<br />
     \[f(x+T) = f(x)\] 
   </div>
   <div class="prop" style="font-size: 0.95em;">
-    Les fonctions <span style="border-bottom: 2px solid yellow;">cos</span> et <span style="border-bottom: 2px solid yellow;">sin</span>
-    sont <span style="color: yellow;">$2\pi$-périodiques</span> : pour tt $x\in\mathbb{R}$
+    Les fonctions <span style="border-bottom: 2px solid red;">cos</span> et <span style="border-bottom: 2px solid red;">sin</span>
+    sont <span style="color: red;">$2\pi$-périodiques</span> : pour tt $x\in\mathbb{R}$
     <p style="margin-top: 0.15em;">\( \cos(x+2\pi) = \cos(x) \quad \) et \( \quad \sin(x+2\pi) = \sin(x) \).</p>
   </div>
 </section>
 
 <section>
-  <div class="rapps" style="font-size: 0.9em;">
+  <div class="rapps">
     Si $f$ est définie sur $\mathbb{R}$, alors :
     <p class="fragment" style="margin-top: 0.2em;">
-      • $f$ est <strong style="color: yellow;">paire</strong> lorsque pour tt $x\in\mathbb{R}$, <span style="color: yellow;">$f(-x)=f(x)$</span>;
+      • $f$ est <strong style="color: red;">paire</strong> lorsque pour tt $x\in\mathbb{R}$, <span style="color: red;">$f(-x)=f(x)$</span>;
     </p>
     <p class="fragment" style="margin-top: -0.5em; margin-bottom: -0.1em;">
       • $f$ est <strong style="color: rgb(118, 146, 246);">impaire</strong> lorsque pour tt $x\in\mathbb{R}$, <span style="color: rgb(118, 146, 246);">$f(-x)=-f(x)$</span>.
     </p>
   </div>
   <div class="fragment prop" style="margin-top: 0.6em;">
-      <p class="fragment">• La fonction <span style="border-bottom: 2px solid yellow;">cos</span> est <strong style="color: yellow;">paire</strong> : \( \cos(-x) = \cos(x) \).</p>
-      <p class="fragment" style="margin-top: -0.3em;">• La fonction <span style="border-bottom: 2px solid rgb(118, 146, 246);">sin</span> est <strong style="color: rgb(118, 146, 246);">impaire</strong> : \( \sin(-x) = -\sin(x) \).</p>
+      <p class="fragment">• La fonction <span style="border-bottom: 3px solid red;">cos</span> est <strong style="color: red;">paire</strong> : \( \cos(-x) = \cos(x) \).</p>
+      <p class="fragment" style="margin-top: -0.3em;">• La fonction <span style="border-bottom: 3px solid rgb(118, 146, 246);">sin</span> est <strong style="color: rgb(118, 146, 246);">impaire</strong> : \( \sin(-x) = -\sin(x) \).</p>
   </div>
 
   <div class="fragment" style="text-align: center; margin-top: 0em;">
